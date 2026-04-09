@@ -10,6 +10,7 @@ export const FormField: React.FC<FormFieldProps> = ({
 	placeholder,
 	error,
 	disabled,
+	autocomplete,
 	register,
 }) => {
 	return (
@@ -22,6 +23,7 @@ export const FormField: React.FC<FormFieldProps> = ({
 				type={type}
 				placeholder={placeholder}
 				disabled={disabled}
+				autoComplete={autocomplete}
 				className="mt-1"
 				{...register}
 			/>

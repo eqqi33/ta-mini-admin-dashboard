@@ -1,11 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { EmployeeDataTable } from "@/features/employees/components/EmployeeDataTable";
+import { EmployeeStatsCard } from "@/features/employees/components/EmployeeStatsCard";
+import { useEmployeeStats } from "@/features/employees/hooks/useEmployeeStats";
 import { Button } from "@/shared/components/ui/button";
 
 export const DashboardPage = () => {
 	const navigate = useNavigate();
 	const { user, logout } = useAuth();
+	const { stats, isLoading } = useEmployeeStats();
 
 	const handleLogout = () => {
 		logout();
@@ -43,6 +46,12 @@ export const DashboardPage = () => {
 					</div>
 				</div>
 
+				{/* Employee Statistics Card */}
+				{stats && (
+					<div className="mb-8">
+						<EmployeeStatsCard stats={stats} isLoading={isLoading} />
+					</div>
+				)}
 				{/* Employees DataTable API */}
 				<div className="rounded-lg bg-white p-6 shadow">
 					<div className="mb-2 flex items-center gap-2">

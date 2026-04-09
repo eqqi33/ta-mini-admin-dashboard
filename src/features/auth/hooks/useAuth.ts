@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { verifyMockToken } from "@/features/auth/services/authService";
 import type { AuthUser } from "../interface/authInterface";
 
-const TOKEN_KEY = "auth-token";
-const USER_KEY = "auth-user";
+const TOKEN_KEY = "authToken";
+const USER_KEY = "authUser";
 
 // hook untuk autentikasi
 
@@ -12,13 +13,29 @@ export const useAuth = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	// inisial state dari localStorage saat pertama kali hook digunakan
+	// verifikasi token untuk memastikan valid
 	useEffect(() => {
 		const storedToken = localStorage.getItem(TOKEN_KEY);
 		const storedUser = localStorage.getItem(USER_KEY);
 
 		if (storedToken && storedUser) {
-			setToken(storedToken);
-			setUser(JSON.parse(storedUser));
+			// Verifikasi token
+			const verifiedPayload = verifyMockToken(storedToken);
+
+			if (verifiedPayload) {
+				// Token valid, set state
+				setToken(storedToken);
+				setUser(JSON.parse(storedUser));
+			} else {
+				// Token invalid atau expired, clear localStorage dan logout
+				console.warn(
+					"Token tidak valid atau sudah expired, silakan login kembali",
+				);
+				localStorage.removeItem(TOKEN_KEY);
+				localStorage.removeItem(USER_KEY);
+				setUser(null);
+				setToken(null);
+			}
 		}
 		setIsLoading(false);
 	}, []);

@@ -49,6 +49,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
 				type={typeInputEnum.EMAIL}
 				error={errors.email?.message}
 				disabled={isSubmitting}
+				autocomplete="email"
 				register={register("email")}
 			/>
 
@@ -58,6 +59,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
 				type={typeInputEnum.PASSWORD}
 				error={errors.password?.message}
 				disabled={isSubmitting}
+				autocomplete="current-password"
 				register={register("password")}
 			/>
 

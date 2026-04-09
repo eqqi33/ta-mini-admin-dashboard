@@ -20,3 +20,21 @@ export interface EmployeeApiItem {
 	deleted_at: string | null;
 	data: Employee;
 }
+
+export interface EmployeeStatsCardProps {
+	stats: EmployeeStats;
+	isLoading: boolean;
+}
+
+export interface DepartmentStats {
+	department: string;
+	count: number;
+	percentage: number;
+}
+
+export interface EmployeeStats {
+	total: number;
+	active: number;
+	inactive: number;
+	byDepartment: DepartmentStats[];
+}

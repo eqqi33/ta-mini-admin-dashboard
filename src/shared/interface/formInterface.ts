@@ -8,5 +8,6 @@ export interface FormFieldProps {
 	placeholder?: string;
 	error?: string;
 	disabled?: boolean;
+	autocomplete?: string;
 	register: UseFormRegisterReturn;
 }
