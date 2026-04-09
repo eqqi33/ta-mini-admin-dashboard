@@ -35,7 +35,7 @@ Aplikasi akan running di `http://localhost:5173` (atau port yang tersedia di sis
 
 ---
 
-## 📁 Arsitektur & Struktur Folder
+## Arsitektur & Struktur Folder
 
 ```
 src/
