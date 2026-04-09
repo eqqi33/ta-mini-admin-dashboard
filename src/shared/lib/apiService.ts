@@ -1,3 +1,4 @@
+import { sortEnum } from "@/shared/enums/commonEnum";
 import type {
 	ApiQueryParams,
 	ApiResponse,
@@ -40,7 +41,7 @@ export abstract class ApiService<T> {
 	protected sortData<U extends object>(
 		items: U[],
 		sortBy: keyof U | undefined,
-		sortOrder: "ASC" | "DESC" = "ASC",
+		sortOrder: keyof typeof sortEnum = "ASC",
 	): U[] {
 		if (!sortBy) return items;
 
@@ -55,7 +56,7 @@ export abstract class ApiService<T> {
 			return aValue > bValue ? 1 : -1;
 		});
 
-		return sortOrder === "DESC" ? sorted.reverse() : sorted;
+		return sortOrder === sortEnum.DESC ? sorted.reverse() : sorted;
 	}
 
 	// Paginate array

@@ -1,3 +1,5 @@
+import type { sortEnum } from "@/shared/enums/commonEnum";
+
 export interface TableState<T> {
 	data: T[];
 	page: number;
@@ -5,7 +7,7 @@ export interface TableState<T> {
 	total: number;
 	search: string;
 	sortBy?: string;
-	sortOrder: "ASC" | "DESC";
+	sortOrder: keyof typeof sortEnum;
 	isLoading: boolean;
 	error: string | null;
 }

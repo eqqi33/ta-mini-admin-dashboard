@@ -9,6 +9,7 @@ import {
 import { loginAPI } from "@/features/auth/services/authService";
 import { FormField } from "@/shared/components/FormField";
 import { Button } from "@/shared/components/ui/button";
+import { typeInputEnum } from "@/shared/enums/commonEnum";
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
 	const [apiError, setApiError] = useState<string | null>(null);
@@ -45,7 +46,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
 			<FormField
 				label="Email"
 				id="email"
-				type="email"
+				type={typeInputEnum.EMAIL}
 				error={errors.email?.message}
 				disabled={isSubmitting}
 				register={register("email")}
@@ -54,7 +55,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
 			<FormField
 				label="Password"
 				id="password"
-				type="password"
+				type={typeInputEnum.PASSWORD}
 				error={errors.password?.message}
 				disabled={isSubmitting}
 				register={register("password")}

@@ -1,9 +1,10 @@
 import type { UseFormRegisterReturn } from "react-hook-form";
+import type { typeInputEnum } from "@/shared/enums/commonEnum";
 
 export interface FormFieldProps {
 	label: string;
 	id: string;
-	type?: "text" | "email" | "password" | "number" | "tel";
+	type?: (typeof typeInputEnum)[keyof typeof typeInputEnum];
 	placeholder?: string;
 	error?: string;
 	disabled?: boolean;

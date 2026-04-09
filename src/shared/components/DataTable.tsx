@@ -9,6 +9,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/shared/components/ui/table";
+import { sortEnum } from "@/shared/enums/commonEnum";
 import type {
 	DataTableColumn,
 	DataTableProps,
@@ -30,17 +31,19 @@ export const DataTable = <T extends object>({
 	onSort,
 	onPreviousPage,
 	onNextPage,
-	searchPlaceholder = "Search...",
+	searchPlaceholder = "Cari...",
 	searchValue = "",
 	sortBy,
-	sortOrder = "ASC",
+	sortOrder = sortEnum.ASC,
 	getRowKey,
 }: DataTableProps<T>) => {
 	const handleSort = (column: DataTableColumn<T>) => {
 		if (!column.sortable || !onSort) return;
 
 		const newOrder =
-			sortBy === column.key && sortOrder === "ASC" ? "DESC" : "ASC";
+			sortBy === column.key && sortOrder === sortEnum.ASC
+				? sortEnum.DESC
+				: sortEnum.ASC;
 		onSort(column.key, newOrder);
 	};
 
@@ -54,7 +57,7 @@ export const DataTable = <T extends object>({
 		if (!column.sortable) return null;
 		if (sortBy !== column.key)
 			return <ArrowUpDown className="ml-1 inline h-4 w-4" />;
-		return sortOrder === "ASC" ? (
+		return sortOrder === sortEnum.ASC ? (
 			<ArrowUp className="ml-1 inline h-4 w-4" />
 		) : (
 			<ArrowDown className="ml-1 inline h-4 w-4" />

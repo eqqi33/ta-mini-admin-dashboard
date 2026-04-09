@@ -12,10 +12,10 @@ import { ApiService } from "@/shared/lib/apiService";
 // Service untuk fetching data employees dari Reqres dengan fitur pagination dan sorting
 class EmployeesApiService extends ApiService<Employee> {
 	private static readonly API_URL =
+		import.meta.env.VITE_API_URL ||
 		"https://reqres.in/api/collections/employees/records";
-	private static readonly API_KEY =
-		"pub_2e0da52adf6613ab9fa60470e6875c6e15f6f6d730208ee30917134efc88700d";
-	private static readonly ENV = "production";
+	private static readonly API_KEY = import.meta.env.VITE_API_KEY || "";
+	private static readonly ENV = import.meta.env.VITE_ENV || "production";
 
 	async fetch(params: ApiQueryParams): Promise<ApiResponse<Employee>> {
 		try {

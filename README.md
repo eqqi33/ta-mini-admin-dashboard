@@ -11,6 +11,14 @@ Dashboard admin yang dibuat menggunakan React, TypeScript, Vite, dan Tailwind CS
 ### Instalasi & Menjalankan Aplikasi
 
 ```bash
+# Copy template environment variables
+cp .env.example .env.local
+
+# Isi .env.local dengan API key Anda (jika diperlukan)
+# VITE_API_URL=https://reqres.in/api/collections/employees/records
+# VITE_API_KEY=your_api_key_here
+# VITE_ENV=production
+
 # Instal dependencies
 pnpm install
 
@@ -32,6 +40,10 @@ Aplikasi akan running di `http://localhost:5173` (atau port yang tersedia di sis
 **Kredensial Default untuk Testing:**
 - Email: `admin@admin.com`
 - Password: `admin123` (minimal 8 karakter)
+
+**Catatan Environment Variables:**
+- `.env.local` tidak akan di-commit ke git (sudah di .gitignore) untuk menjaga keamanan API key
+- `.env.example` adalah template yang bisa di-commit untuk referensi developer lain
 
 ---
 

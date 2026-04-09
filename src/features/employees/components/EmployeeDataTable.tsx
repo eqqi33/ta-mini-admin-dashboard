@@ -1,19 +1,18 @@
+import { fieldSortEnum } from "@/features/employees/enums/fieldSortEnum";
 import { useEmployeesDataTable } from "@/features/employees/hooks/useEmployeesDataTable";
 import type { Employee } from "@/features/employees/interface/employeeInterface";
 import { DataTable } from "@/shared/components/DataTable";
+import type { sortEnum } from "@/shared/enums/commonEnum";
 import type { DataTableColumn } from "@/shared/interface/dataTableInterface";
 
 // Komponen DataTable untuk menampilkan employees dari Reqres API
 export const EmployeeDataTable = () => {
 	const table = useEmployeesDataTable();
 
-	const handleSort = (column: keyof Employee) => {
-		const newOrder =
-			table.sortBy === column && table.sortOrder === "ASC" ? "DESC" : "ASC";
-		table.setSorting(
-			column as "name" | "email" | "role" | "department" | "is_active",
-			newOrder,
-		);
+	type SortableColumn = (typeof fieldSortEnum)[keyof typeof fieldSortEnum];
+
+	const handleSort = (column: SortableColumn, order: keyof typeof sortEnum) => {
+		table.setSorting(column, order);
 	};
 
 	const handlePreviousPage = () => {
@@ -27,7 +26,7 @@ export const EmployeeDataTable = () => {
 	// Definisi kolom untuk employees
 	const columns: DataTableColumn<Employee>[] = [
 		{
-			key: "id",
+			key: fieldSortEnum.ID,
 			label: "No",
 			sortable: false,
 			render: (_value, _row, index) => {
@@ -36,7 +35,7 @@ export const EmployeeDataTable = () => {
 			},
 		},
 		{
-			key: "name",
+			key: fieldSortEnum.NAME,
 			label: "Nama",
 			sortable: true,
 			render: (value) => (
@@ -44,7 +43,7 @@ export const EmployeeDataTable = () => {
 			),
 		},
 		{
-			key: "email",
+			key: fieldSortEnum.EMAIL,
 			label: "Email",
 			sortable: true,
 			render: (value) => (
@@ -54,17 +53,17 @@ export const EmployeeDataTable = () => {
 			),
 		},
 		{
-			key: "role",
+			key: fieldSortEnum.ROLE,
 			label: "Role",
 			sortable: true,
 		},
 		{
-			key: "department",
+			key: fieldSortEnum.DEPARTMENT,
 			label: "Departemen",
 			sortable: true,
 		},
 		{
-			key: "is_active",
+			key: fieldSortEnum.IS_ACTIVE,
 			label: "Status",
 			sortable: true,
 			render: (value) => (

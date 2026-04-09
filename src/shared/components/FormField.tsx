@@ -1,11 +1,12 @@
 import { Input } from "@/shared/components/ui/input";
+import { typeInputEnum } from "@/shared/enums/commonEnum";
 import type { FormFieldProps } from "@/shared/interface/formInterface";
 
 // Komponen form field yang bisa digunakan lagi
 export const FormField: React.FC<FormFieldProps> = ({
 	label,
 	id,
-	type = "text",
+	type = typeInputEnum.TEXT,
 	placeholder,
 	error,
 	disabled,

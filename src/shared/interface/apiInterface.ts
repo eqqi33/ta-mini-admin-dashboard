@@ -1,3 +1,5 @@
+import type { sortEnum } from "@/shared/enums/commonEnum";
+
 export interface ApiResponse<T> {
 	data: T[];
 	page: number;
@@ -12,7 +14,7 @@ export interface ApiQueryParams {
 	pageSize?: number;
 	search?: string;
 	sortBy?: string;
-	sortOrder?: "ASC" | "DESC";
+	sortOrder?: keyof typeof sortEnum;
 }
 
 export interface ApiServiceConfig {

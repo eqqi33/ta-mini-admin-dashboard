@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import type { fieldSortEnum } from "@/features/employees/enums/fieldSortEnum";
 import type { Employee } from "@/features/employees/interface/employeeInterface";
 import { getEmployeesAPI } from "@/features/employees/services/employeesService";
+import { sortEnum } from "@/shared/enums/commonEnum";
 import { useDebounce } from "@/shared/hooks/useDebounce";
 import type { ApiQueryParams } from "@/shared/interface/apiInterface";
 import type { TableState } from "@/shared/interface/tableStateInterface";
@@ -14,7 +16,7 @@ export const useEmployeesDataTable = () => {
 		total: 0,
 		search: "",
 		sortBy: undefined,
-		sortOrder: "ASC",
+		sortOrder: sortEnum.ASC,
 		isLoading: true,
 		error: null,
 	});
@@ -78,8 +80,8 @@ export const useEmployeesDataTable = () => {
 		setSearch: (search: string) => setState((prev) => ({ ...prev, search })),
 		setPage: (page: number) => setState((prev) => ({ ...prev, page })),
 		setSorting: (
-			sortBy: "name" | "email" | "role" | "department" | "is_active" | "id",
-			sortOrder: "ASC" | "DESC",
+			sortBy: (typeof fieldSortEnum)[keyof typeof fieldSortEnum],
+			sortOrder: (typeof sortEnum)[keyof typeof sortEnum],
 		) => setState((prev) => ({ ...prev, sortBy, sortOrder, page: 1 })),
 		isEmpty: state.data.length === 0 && !state.isLoading,
 		hasPreviousPage: state.page > 1,

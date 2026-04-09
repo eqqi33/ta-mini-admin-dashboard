@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { sortEnum } from "@/shared/enums/commonEnum";
 
 // Interface untuk kolom di DataTable
 export interface DataTableColumn<T> {
@@ -22,12 +23,12 @@ export interface DataTableProps<T> {
 	hasNextPage?: boolean;
 	hasPreviousPage?: boolean;
 	onSearch?: (search: string) => void;
-	onSort?: (column: keyof T, order: "ASC" | "DESC") => void;
+	onSort?: (column: keyof T, order: keyof typeof sortEnum) => void;
 	onPreviousPage?: () => void;
 	onNextPage?: () => void;
 	searchPlaceholder?: string;
 	searchValue?: string;
 	sortBy?: keyof T;
-	sortOrder?: "ASC" | "DESC";
+	sortOrder?: keyof typeof sortEnum;
 	getRowKey?: (row: T, index: number) => string | number;
 }
